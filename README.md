@@ -1,8 +1,7 @@
-## Solving linear programming problems. Simplex method with tables
+## Solving transport type problems
 * [Description](#description)
 * [Get started](#get-started)
 * [Project structure](#project-structure)
-* [Scheme of Simplex method](#scheme-of-simplex-method)
 * [Results](#results)
 
 
