@@ -15,6 +15,7 @@ class TransportProblem:
         self.is_closed = True
 
 
+
     def check_optimum(self):
         lenght = len(self.import_b) + len(self.export_a)
         matrix = np.empty([lenght, lenght])
