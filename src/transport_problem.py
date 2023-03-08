@@ -45,15 +45,6 @@ class TransportProblem:
             self.new_basis_variable = arr
 
 
-def __repr__(self):
-    return f"TRANSPORT PROBLEM:\nМатрица c_i_j:\n{self.weight_matrix}\nМатрица, в числах которых стоят базисные " \
-           f"переменные: \n{self.basis_solution_matrix}\nКоордината новой вводимой переменной: " \
-           f"{self.new_basis_variable}\nМассив координат точек цикла, установленных в определённом порядке: " \
-           f"{self.loop_recalculation}\nКоличество груза в пунктах хранения: {self.export_a}\nПотенциал u: " \
-           f"{self.potential_u}\nПотенциал v: {self.potential_v}\nОптимальность решения: {self.is_optimal}" \
-           f"\nЗадача закрыта: {self.is_closed}"
-
-
 if __name__ == '__main__':
     weight_matrix = np.array([[14, 28, 21, 28], [10, 17, 15, 24], [14, 30, 25, 21]])
     export_a = [27, 20, 43]
@@ -65,3 +56,13 @@ if __name__ == '__main__':
     obj.import_b = import_b
     obj.basis_solution_matrix = basis_solution_matrix
     TransportProblem.check_optimum(obj)
+
+
+
+def __repr__(self):
+    return f"TRANSPORT PROBLEM:\nМатрица c_i_j:\n{self.weight_matrix}\nМатрица, в числах которых стоят базисные " \
+           f"переменные: \n{self.basis_solution_matrix}\nКоордината новой вводимой переменной: " \
+           f"{self.new_basis_variable}\nМассив координат точек цикла, установленных в определённом порядке: " \
+           f"{self.loop_recalculation}\nКоличество груза в пунктах хранения: {self.export_a}\nПотенциал u: " \
+           f"{self.potential_u}\nПотенциал v: {self.potential_v}\nОптимальность решения: {self.is_optimal}" \
+           f"\nЗадача закрыта: {self.is_closed}"
