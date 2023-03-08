@@ -5,7 +5,7 @@ from src.transport_problem import TransportProblem
 
 def north_west_problem(task: TransportProblem):
     north_west = np.array([0, 0])  # начальное положение(1-ый строка, 2-ой столбец)
-    # while north_west[0] <= len(task.export_a) - 1 and north_west[1] <= len(task.import_b) - 1:
+    #while north_west[0] <= len(task.export_a) - 1 and north_west[1] <= len(task.import_b) - 1:
 
     print("Hello")
 
