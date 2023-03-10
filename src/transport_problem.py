@@ -1,5 +1,7 @@
 import numpy as np
 from check_optimum import check_optimum
+from north_west_method import north_west_method
+
 
 
 class TransportProblem:
@@ -17,30 +19,14 @@ class TransportProblem:
 
 
     check_optimum = check_optimum
+    north_west_method = north_west_method
+    
+    def __repr__(self):
+        return f"TRANSPORT PROBLEM:\nМатрица c_i_j:\n{self.weight_matrix}\nМатрица, в числах которых стоят базисные " \
+               f"переменные: \n{self.basis_solution_matrix}\nКоордината новой вводимой переменной: " \
+               f"{self.new_basis_variable}\nМассив координат точек цикла, установленных в определённом порядке: " \
+               f"{self.loop_recalculation}\nКоличество груза в пунктах хранения: {self.export_a}\nКоличество груза в " \
+               f"пунктах назначения: {self.import_b}\nПотенциал u: {self.potential_u}\nПотенциал v: " \
+               f"{self.potential_v}\nОптимальность решения: {self.is_optimal}\nЗадача закрыта: {self.is_closed}"
 
-if __name__ == '__main__':
-
-    weight_matrix = np.array([[14, 28, 21, 28],
-                              [10, 17, 15, 24],
-                              [14, 30, 25, 21]])
-    export_a = [27, 20, 43]
-    import_b = np.array([33, 13, 27, 17])
-    basis_solution_matrix = np.array([[27, None, None, None],
-                                      [6, 13, 1, None],
-                                      [None, None, 26, 17]])
-    obj = TransportProblem()
-    obj.weight_matrix = weight_matrix
-    obj.export_a = export_a
-    obj.import_b = import_b
-    obj.basis_solution_matrix = basis_solution_matrix
-
-    check_optimum(obj)
-    print(obj.__dict__)
-
-def __repr__(self):
-    return f"TRANSPORT PROBLEM:\nМатрица c_i_j:\n{self.weight_matrix}\nМатрица, в числах которых стоят базисные " \
-           f"переменные: \n{self.basis_solution_matrix}\nКоордината новой вводимой переменной: " \
-           f"{self.new_basis_variable}\nМассив координат точек цикла, установленных в определённом порядке: " \
-           f"{self.loop_recalculation}\nКоличество груза в пунктах хранения: {self.export_a}\nПотенциал u: " \
-           f"{self.potential_u}\nПотенциал v: {self.potential_v}\nОптимальность решения: {self.is_optimal}" \
-           f"\nЗадача закрыта: {self.is_closed}"
+    
