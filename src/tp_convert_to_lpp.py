@@ -39,7 +39,6 @@ def tp_to_lpp(self: TransportProblem):
 
     return lpp
 
-
 if __name__ == '__main__':
     weight_matrix = np.array([[14, 28, 21, 28],
                               [10, 17, 15, 24],
