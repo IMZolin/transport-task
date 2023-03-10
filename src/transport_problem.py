@@ -1,4 +1,5 @@
 import numpy as np
+from north_west_method import north_west_method
 
 
 class TransportProblem:
@@ -21,3 +22,5 @@ class TransportProblem:
                f"{self.loop_recalculation}\nКоличество груза в пунктах хранения: {self.export_a}\nКоличество груза в " \
                f"пунктах назначения: {self.import_b}\nПотенциал u: {self.potential_u}\nПотенциал v: " \
                f"{self.potential_v}\nОптимальность решения: {self.is_optimal}\nЗадача закрыта: {self.is_closed}"
+
+    north_west_method = north_west_method

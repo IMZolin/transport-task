@@ -18,11 +18,6 @@ def north_west_method(self):
         else:
             i += 1
             j += 1
-        print(i, j)
-        print(self.export_a)
-        print(self.import_b)
-
-    print("Hello")
 
 
 if __name__ == '__main__':
