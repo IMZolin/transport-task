@@ -34,7 +34,7 @@ if __name__ == '__main__':
     obj.import_b = import_b
     obj.basis_solution_matrix = basis_solution_matrix
 
-    obj.check_optimum()
+    check_optimum(obj)
     print(obj.__dict__)
 
 def __repr__(self):
