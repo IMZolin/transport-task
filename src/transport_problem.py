@@ -1,4 +1,5 @@
 import numpy as np
+from north_west_method import north_west_method
 
 
 class TransportProblem:
@@ -18,6 +19,8 @@ class TransportProblem:
         return f"TRANSPORT PROBLEM:\nМатрица c_i_j:\n{self.weight_matrix}\nМатрица, в числах которых стоят базисные " \
                f"переменные: \n{self.basis_solution_matrix}\nКоордината новой вводимой переменной: " \
                f"{self.new_basis_variable}\nМассив координат точек цикла, установленных в определённом порядке: " \
-               f"{self.loop_recalculation}\nКоличество груза в пунктах хранения: {self.export_a}\nПотенциал u: " \
-               f"{self.potential_u}\nПотенциал v: {self.potential_v}\nОптимальность решения: {self.is_optimal}" \
-               f"\nЗадача закрыта: {self.is_closed}"
+               f"{self.loop_recalculation}\nКоличество груза в пунктах хранения: {self.export_a}\nКоличество груза в " \
+               f"пунктах назначения: {self.import_b}\nПотенциал u: {self.potential_u}\nПотенциал v: " \
+               f"{self.potential_v}\nОптимальность решения: {self.is_optimal}\nЗадача закрыта: {self.is_closed}"
+
+    north_west_method = north_west_method
