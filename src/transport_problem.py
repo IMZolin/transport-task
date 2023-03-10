@@ -1,5 +1,7 @@
 import numpy as np
+from check_optimum import check_optimum
 from north_west_method import north_west_method
+
 
 
 class TransportProblem:
@@ -15,6 +17,10 @@ class TransportProblem:
         self.is_optimal = False
         self.is_closed = True
 
+
+    check_optimum = check_optimum
+    north_west_method = north_west_method
+    
     def __repr__(self):
         return f"TRANSPORT PROBLEM:\nМатрица c_i_j:\n{self.weight_matrix}\nМатрица, в числах которых стоят базисные " \
                f"переменные: \n{self.basis_solution_matrix}\nКоордината новой вводимой переменной: " \
@@ -23,4 +29,4 @@ class TransportProblem:
                f"пунктах назначения: {self.import_b}\nПотенциал u: {self.potential_u}\nПотенциал v: " \
                f"{self.potential_v}\nОптимальность решения: {self.is_optimal}\nЗадача закрыта: {self.is_closed}"
 
-    north_west_method = north_west_method
+    
