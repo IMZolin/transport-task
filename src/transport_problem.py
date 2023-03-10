@@ -1,4 +1,5 @@
 import numpy as np
+from loop_recalculation_file import loop_calculation
 
 
 class TransportProblem:
@@ -21,3 +22,6 @@ class TransportProblem:
                f"{self.loop_recalculation}\nКоличество груза в пунктах хранения: {self.export_a}\nПотенциал u: " \
                f"{self.potential_u}\nПотенциал v: {self.potential_v}\nОптимальность решения: {self.is_optimal}" \
                f"\nЗадача закрыта: {self.is_closed}"
+
+    loop_calculation = loop_calculation
+
