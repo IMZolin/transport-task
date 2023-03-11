@@ -19,4 +19,9 @@ if __name__ == '__main__':
                    [5, 6]])
     print([item for item in a1])
     print(([1, 2] == a1).all(1).any())
-
+    my_task = TransportProblem()
+    my_task.weight_matrix = np.matrix([[14, 7, 4, 8, 3], [9, 2, 2, 12, 10], [17, 7, 9, 11, 10], [13, 7, 12, 14, 5]])
+    my_task.export_a = np.array([23, 25, 5, 8])
+    my_task.import_b = np.array([20, 10, 12, 7, 12])
+    my_task.north_west_method()
+    print(my_task)
