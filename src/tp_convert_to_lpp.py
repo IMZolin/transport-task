@@ -35,7 +35,7 @@ def tp_to_lpp(self: TransportProblem):
     """заполняю вектор целевой функции"""
     lpp.c_vector = self.weight_matrix.reshape(1, m * n)
 
-    print(lpp.__dict__)
+    # print(lpp.__dict__)
 
     return lpp
 

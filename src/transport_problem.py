@@ -4,6 +4,9 @@ from check_optimum import check_optimum
 from north_west_method import north_west_method
 from reculculation_basis_matrix import recalculation
 from open_to_close import to_close
+from interface_file import answer_calculation, steps_visualisation
+from potential_method import execute_potential_method
+
 
 class TransportProblem:
     def __init__(self):
@@ -23,6 +26,9 @@ class TransportProblem:
     north_west_method = north_west_method
     loop_calculation = loop_calculation
     to_close = to_close
+    answer_calculation = answer_calculation
+    steps_visualisation = steps_visualisation
+    execute_potential_method = execute_potential_method
     
     def __repr__(self):
         return f"TRANSPORT PROBLEM:\nМатрица c_i_j:\n{self.weight_matrix}\nМатрица, в числах которых стоят базисные " \
