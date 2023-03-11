@@ -1,7 +1,5 @@
 import numpy as np
 
-
-
 def north_west_method(self):
     i = 0  # начальное положение(1-ый строка, 2-ой столбец)
     j = 0
