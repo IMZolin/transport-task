@@ -1,27 +1,42 @@
 import numpy as np
 from transport_problem import TransportProblem
+from tp_convert_to_lpp import tp_to_lpp
+from corner_dots import Corner_Dots_Method
 
 
 if __name__ == '__main__':
-    matrix1 = np.array([[10, None, None, None],
-                        [None, 9, 3, None],
-                        [None, None, 7, 6],
-                        [8, None, None, None],
-                        [3, 6, None, None]])
+    weight_matrix_1 = np.array([[2, 6, 5, 3, 0],
+                                [3, 2, 1, 4, 0],
+                                [3, 6, 2, 5, 0],
+                                [3, 6, 5, 6, 0],
+                                [3, 6, 5, 7, 0]])
+    # matrix1 = np.array([[15, None, None, None, None],
+    #                     [None, 2, 7, None, None],
+    #                     [6, 1, None, 6, None],
+    #                     [None, 8, None, None, None],
+    #                     [None, 4, None, None, 5]])
+
     tp1 = TransportProblem()
-    tp1.basis_solution_matrix = matrix1
-    tp1.new_basis_variable = np.array([0, 3])
+    tp1.weight_matrix = weight_matrix_1
+    tp1.export_a = np.array([21, 3, 13, 8, 9])
+    tp1.import_b = np.array([21, 15, 7, 6, 5])
+    # tp1.basis_solution_matrix = matrix1
+    tp1.north_west_method()
+    tp1.check_optimum()
+    while not tp1.is_optimal:
+        tp1.loop_calculation()
+        tp1.recalculation()
+        tp1.check_optimum()
     print(tp1.__dict__)
 
-    tp1.loop_calculation()
-    a1 = np.array([[1,2],
-                   [3, 4],
-                   [5, 6]])
-    print([item for item in a1])
-    print(([1, 2] == a1).all(1).any())
-    my_task = TransportProblem()
-    my_task.weight_matrix = np.matrix([[14, 7, 4, 8, 3], [9, 2, 2, 12, 10], [17, 7, 9, 11, 10], [13, 7, 12, 14, 5]])
-    my_task.export_a = np.array([23, 25, 5, 8])
-    my_task.import_b = np.array([20, 10, 12, 7, 12])
-    my_task.north_west_method()
-    print(my_task)
+    # lpp = tp_to_lpp(tp1)
+    #
+    # """solve the problem using corner dots method"""
+    # Corner_Dots_Method(lpp.c_vector[0].copy(),
+    #                    lpp.b_vector.copy(),
+    #                    lpp.coefficients_matrix.copy(),
+    #                    0)
+
+
+
+
