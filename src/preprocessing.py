@@ -151,8 +151,9 @@ def Make_Canon_Form(Input_Matrix, b, Is_Max, X_Positive, Equation_Less, Equation
         """Normalize"""
         for i in range(0, M_General, 1):
             coef = A[i, Ind_Final[i]]
-            A[i, :] = A[i, :] / coef
-            b[i] = b[i] / coef
+            if coef != 0:
+                A[i, :] = A[i, :] / coef
+                b[i] = b[i] / coef
 
         return A, b, Ind_Final
 
@@ -178,7 +179,8 @@ def Update_C(M, b, c, c_free, Basis_Indexes, Equation_Less, Equation_More, X_Any
     """представление вектора с через небазисные компоненты (обнуление базисных компонент)"""
     for i in range(M.shape[0]):
         """в знаменателе обязана быть 1"""
-        coef = c_reshaped[Basis_Indexes[i]] / M[i, Basis_Indexes[i]]
-        c_reshaped[:] = c_reshaped[:] - coef * M[i][:]
-        c_free = c_free - coef * b[i]
+        if M[i, Basis_Indexes[i]] != 0:
+            coef = c_reshaped[Basis_Indexes[i]] / M[i, Basis_Indexes[i]]
+            c_reshaped[:] = c_reshaped[:] - coef * M[i][:]
+            c_free = c_free - coef * b[i]
     return c_reshaped, c_free

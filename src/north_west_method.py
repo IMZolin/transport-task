@@ -7,7 +7,7 @@ def north_west_method(self):
     exp_a_copy = self.export_a.copy()
     imp_b_copy = self.import_b.copy()
     while i != len(self.export_a) and j != len(self.import_b):
-        min_a_b = min(self.export_a[i], self.import_b[j])
+        min_a_b = min(exp_a_copy[i], imp_b_copy[j])
         exp_a_copy[i] -= min_a_b
         imp_b_copy[j] -= min_a_b
         self.basis_solution_matrix[i, j] = min_a_b

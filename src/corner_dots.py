@@ -29,6 +29,7 @@ def Corner_Dots_Method(c_vector_, b_vector_, Matrix_, c0):
     """
     generator = get_Aux(Matrix_)
     solution_list = list()
+    callback = 0
     for A_aux, item in generator:
         try:
             tmp_basis = np.arange(A_aux.shape[1])
@@ -41,6 +42,10 @@ def Corner_Dots_Method(c_vector_, b_vector_, Matrix_, c0):
                 solution_list.append(result)
         except Exception:
            pass
+
+        callback += 1
+        if callback % 1000 == 0:
+            print(callback)
     if len(solution_list) != 0:
         print('\nРЕШЕНИЕ КРАЙНИМИ ТОЧКАМИ: ', min(solution_list))
         return min(solution_list)
