@@ -2,6 +2,7 @@ import numpy as np
 from loop_recalculation_file import loop_calculation
 from check_optimum import check_optimum
 from north_west_method import north_west_method
+from reculculation_basis_matrix import recalculation
 
 
 class TransportProblem:
@@ -17,7 +18,7 @@ class TransportProblem:
         self.is_optimal = False
         self.is_closed = True
 
-
+    recalculation = recalculation
     check_optimum = check_optimum
     north_west_method = north_west_method
     loop_calculation = loop_calculation

@@ -16,14 +16,19 @@ def check_optimum(self):
     matrix[counter][len(self.import_b)] = 1
     b_vec.append(0)
     arr = []
+    value = 0
     result = np.linalg.solve(matrix, b_vec)
     for i in range(len(self.export_a)):
         for j in range(len(self.import_b)):
-            if result[j] - result[len(self.import_b) + i] > self.weight_matrix[i][j]:
+            if value > self.weight_matrix[i][j] - result[j] + result[len(self.import_b) + i]:
+                arr = []
                 arr.append(i)
                 arr.append(j)
+                value = self.weight_matrix[i][j] - result[j] + result[len(self.import_b) + i]
                 print('Это не оптимальный план')
-                break
+    # values_array = []
+    # for item in arr:
+    #     values_array.append(self.basis_solution_matrix)
     if len(arr) == 0:
         self.is_optimal = True
         print('Опорный план найден')

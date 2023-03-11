@@ -23,8 +23,13 @@ def recalculation(self):
     for sub_arr in arr_odd:
         arr_odd_val.append(matrix[sub_arr[0],sub_arr[1]])
     delta = min(arr_odd_val)
+    matrix[self.loop_recalculation[0][0], self.loop_recalculation[0][1]] = delta
+    is_None_put = False
     for sub_arr in arr_odd:
         matrix[sub_arr[0],sub_arr[1]] -= delta
+        if (matrix[sub_arr[0],sub_arr[1]] == 0) & (not is_None_put):
+            matrix[sub_arr[0], sub_arr[1]] = None
+            is_None_put = True
     for sub_arr in arr_even:
         matrix[sub_arr[0], sub_arr[1]] += delta
     self.basis_solution_matrix = matrix
