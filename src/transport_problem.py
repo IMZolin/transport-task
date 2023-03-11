@@ -3,7 +3,7 @@ from loop_recalculation_file import loop_calculation
 from check_optimum import check_optimum
 from north_west_method import north_west_method
 from reculculation_basis_matrix import recalculation
-
+from open_to_close import to_close
 
 class TransportProblem:
     def __init__(self):
@@ -22,6 +22,7 @@ class TransportProblem:
     check_optimum = check_optimum
     north_west_method = north_west_method
     loop_calculation = loop_calculation
+    to_close = to_close
     
     def __repr__(self):
         return f"TRANSPORT PROBLEM:\nМатрица c_i_j:\n{self.weight_matrix}\nМатрица, в числах которых стоят базисные " \
