@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     """solve the problem using Simplex - Method"""
     Simplex_With_Init(A2.copy(), b2.copy(), Ind2.copy(), c2.copy(), c_free2.copy())
-    print('cat')
+
 
 
 

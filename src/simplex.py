@@ -1,5 +1,32 @@
 import numpy as np
+from prettytable import PrettyTable
 from preprocessing import Update_C
+
+
+def step_print(A, b, c, c0, base_indexes):
+
+    A_print = np.zeros((A.shape[0] + 2) * (A.shape[1] + 2)).reshape(A.shape[0] + 2, A.shape[1] + 2)
+    A_print = A_print.astype(str)
+    for i in range(A.shape[0]):
+        for j in range(A.shape[1]):
+            A_print[i][j] = A[i][j]
+        A_print[i, -2] = '='
+        A_print[i, -1] = b[i]
+    for j in range(A.shape[1]):
+        A_print[-2][j] = ' '
+        A_print[-1][j] = c[j]
+    A_print[-1, -1] = -c0
+    A_print[-1, -2] = '->'
+    A_print[-2, [-2, -1]] = ' '
+
+    table = PrettyTable()
+    table.header = False
+    table.add_rows(A_print)
+    print('Матрица ограничений:')
+    print(table)
+    print('Базисные индексы:')
+    print(base_indexes)
+    print('\n\n')
 
 
 def create_list_for_leader_line(b_free_chlens, leader_column, B_index_ones, A_matrix):
@@ -50,12 +77,13 @@ def beautiful_print_solution(A_matrix, B_index_ones, b_free_chlens, C_deal_free_
     zero_vector = np.zeros(A_matrix.shape[1])
     for i in range(len(B_index_ones)):
         zero_vector[B_index_ones[i]] = b_free_chlens[i]
-    print('OPTIMAL_BASIS_SOLUTION ----↓\n', zero_vector)
-    print('\n МАРИЦА А ----↓ \n', A_matrix)
+    print('ОПТИМАЛЬНОЕ БАЗИСНОЕ РЕШЕНИЕ ----↓\n', zero_vector)
+    # print('\n МАРИЦА А ----↓ \n', A_matrix)
     print('\n БАЗИСНЫЕ ИНДЕКСЫ ----↓ \n', B_index_ones)
-    print('\n ОПТИМАЛЬНОЕ РЕШЕНИЕ ----↓ \n', '', -C_deal_free_chlen)
     print('\n СТОЛБЕЦ СВОБОДНЫХ ЧЛЕНОВ ----↓ \n', '', b_free_chlens)
     print('\n ВЕКТОР С ----↓ \n', '', C_deal_func)
+    print('\n ЗНАЧЕНИЕ ЦЕЛЕВОЙ ФУНКЦИИ ----↓ \n', '', -C_deal_free_chlen)
+    print('\n\n')
 
 
 def pivot(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chlen, leader_column, leader_line):
@@ -84,6 +112,8 @@ def Simplex(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chle
                 pivot(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chlen, leader_column, leader_line)
         except:
             return None
+        step_print(A_matrix, b_free_chlens, C_deal_func, C_deal_free_chlen, B_index_ones)
+
     beautiful_print_solution(A_matrix, B_index_ones, b_free_chlens, C_deal_free_chlen, C_deal_func)
 
     return A_matrix, b_free_chlens, C_deal_func, C_deal_free_chlen
@@ -96,7 +126,7 @@ def Simplex_With_Init(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal
     try:
         A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chlen = \
             Initialize_Simplex(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chlen)
-        print('\n------------------------------------симплекс-метод--------------------------------------\n')
+        print('\n---СИМПЛЕКС - МЕТОД---\n')
         return Simplex(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chlen)
     except:
         return None
@@ -106,7 +136,7 @@ def Initialize_Simplex(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_dea
     """
     Функция Initialize_Simplex - см. note8 (не по Кормену)
     """
-    print('\n------------------------------------инициализация-2--------------------------------------\n')
+    print('\n---ИНИЦИАЛИЗАЦИЯ СИМПЛЕКС-МЕТОДА. ПРОВЕРКА СУЩЕСТВОВАНИЯ РЕШЕНИЯ---\n')
     b_negative_index = list()
     for i in range(A_matrix.shape[0]):
         if b_free_chlens[i] < 0:
@@ -150,7 +180,7 @@ def Initialize_Simplex(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_dea
         A_aux, b_free_chlens, c_aux, c0_aux = Simplex(A_aux, b_free_chlens, B_index_ones, c_aux, c0_aux)
 
         if c0_aux == 0:
-            print("\nЭТАП ИНИЦИАЛИЗАЦИИ. ЗАДАЧА ИМЕЕТ РЕШЕНИЕ\n")
+            print("\nЭТАП ИНИЦИАЛИЗАЦИИ ПРОЙДЕН. ЗАДАЧА ИМЕЕТ РЕШЕНИЕ\n")
             for i in range(len(b_negative_index)):
                 A_aux = np.delete(A_aux, [-1], axis=1)
             C_deal_func, C_deal_free_chlen = Update_C(A_aux, b_free_chlens, C_deal_func, C_deal_free_chlen, B_index_ones, 0, 0, 0)
