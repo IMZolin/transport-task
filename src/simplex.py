@@ -36,15 +36,14 @@ def create_list_for_leader_line(b_free_chlens, leader_column, B_index_ones, A_ma
     """
     try:
         result = {j: b_free_chlens[j] / A_matrix[j][leader_column] for j in [k for k in range(A_matrix.shape[0]) if
-                                                                             A_matrix[k][leader_column]]}
-        filtered_result = {key: val for key, val in result.items() if val > 0}
+                                                                             A_matrix[k][leader_column] > 0]}
+        filtered_result = {key: val for key, val in result.items() if val >= 0}
         leader_line = min(filtered_result, key=filtered_result.get)
         B_index_ones[leader_line] = leader_column
         return leader_line
     except:
         print("\nСИМПЛЕКС. РЕШЕНИЕ НЕОГРАНИЧЕНО!!!\n")
         return None
-
 
 def Gauss_Jordano(leader_column, leader_line, leader_value, A_matrix, b_free_chlens, c_deal_func, c_deal_free_chlen):
     """
@@ -112,7 +111,7 @@ def Simplex(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chle
                 pivot(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chlen, leader_column, leader_line)
         except:
             return None
-        step_print(A_matrix, b_free_chlens, C_deal_func, C_deal_free_chlen, B_index_ones)
+        # step_print(A_matrix, b_free_chlens, C_deal_func, C_deal_free_chlen, B_index_ones)
 
     beautiful_print_solution(A_matrix, B_index_ones, b_free_chlens, C_deal_free_chlen, C_deal_func)
 
