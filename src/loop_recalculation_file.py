@@ -47,6 +47,8 @@ def find_new_turn_in_column(self, column: int) -> bool:
 
 def loop_calculation(self):
     self.loop_recalculation = np.array([[self.new_basis_variable[0], self.new_basis_variable[1]]])
-    find_new_turn_in_column(self, self.new_basis_variable[1])
+    is_found = find_new_turn_in_column(self, self.new_basis_variable[1])
+    if not is_found:
+        find_new_turn_in_line(self, self.new_basis_variable[1])
 
 

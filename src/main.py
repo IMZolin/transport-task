@@ -1,16 +1,22 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from transport_problem import TransportProblem
+from import_adapter import import_data_from_file
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    print("\033[0;31;40m\033[0;32;40m\033[0;34;40m")  # COLOR SET
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    M, a, b = import_data_from_file()
+    tp1 = TransportProblem()
+    tp1.weight_matrix = M
+    tp1.export_a = a
+    tp1.import_b = b
+
+    tp1.execute_potential_method()
+
+
+
+
+
+
+
+

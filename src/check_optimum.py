@@ -8,7 +8,7 @@ def check_optimum(self):
     counter = 0
     for i in range(self.basis_solution_matrix.shape[0]):
         for j in range(self.basis_solution_matrix.shape[1]):
-            if self.basis_solution_matrix[i][j] != None:
+            if self.basis_solution_matrix[i][j] is not None:
                 matrix[counter][j] = 1
                 matrix[counter][i + len(self.import_b)] = -1
                 counter += 1
@@ -25,7 +25,6 @@ def check_optimum(self):
                 arr.append(i)
                 arr.append(j)
                 value = self.weight_matrix[i][j] - result[j] + result[len(self.import_b) + i]
-                print('Это не оптимальный план')
     # values_array = []
     # for item in arr:
     #     values_array.append(self.basis_solution_matrix)
@@ -33,4 +32,5 @@ def check_optimum(self):
         self.is_optimal = True
         print('Опорный план найден')
     else:
+        print('Это не оптимальный план')
         self.new_basis_variable = arr
