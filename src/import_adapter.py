@@ -7,6 +7,7 @@ def import_data_from_file():
 
     matrix = np.array(data.iloc[:-2, :])
     a = np.array(data.iloc[-2, :])
+    a = a[~np.isnan(a)]  # remove all nan values
     b = np.array(data.iloc[-1, :])
-
+    b = b[~np.isnan(b)]
     return matrix, a, b
