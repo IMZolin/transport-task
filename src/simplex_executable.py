@@ -6,7 +6,7 @@ from import_adapter import import_data_from_file
 
 
 if __name__ == '__main__':
-    print("\033[0;31;40m\033[0;32;40m\033[0;34;40m")  # COLOR SET
+    # print("\033[0;31;40m\033[0;32;40m\033[0;34;40m")  # COLOR SET
 
     M, a, b = import_data_from_file()
     tp1 = TransportProblem()
@@ -28,6 +28,7 @@ if __name__ == '__main__':
     c2, c_free2 = Update_C(A2.copy(), b2.copy(), lpp.c_vector[0].copy(), 0, Ind2, 0, 0, 0)
 
     """solve the problem using Simplex - Method"""
+    print('Матрица ограничений преообазована в связи с выделением первого базисного решения\n')
     Simplex_With_Init(A2.copy(), b2.copy(), Ind2.copy(), c2.copy(), c_free2.copy())
 
 

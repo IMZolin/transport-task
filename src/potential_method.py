@@ -5,16 +5,28 @@ def execute_potential_method(self):
     table0 = PrettyTable()
     table0.header = False
     table0.add_rows(self.weight_matrix)
-    print('Весовая матрица перед проверкой на закрытость:')
+    print('До проверки на закрытость:')
+    print('Объем груза, хранящийся у поставщиков:')
+    print(self.export_a)
+    print('Объем груза, который необходимо доставить каждому из производителей:')
+    print(self.import_b)
+    print('Весовая матрица:')
     print(table0)
+
 
     self.to_close()
 
     table0 = PrettyTable()
     table0.header = False
     table0.add_rows(self.weight_matrix)
-    print('Весовая матрица после проверки на закрытость:')
+    print('\nПосле проверки на закрытость:')
+    print('Объем груза, хранящийся у поставщиков:')
+    print(self.export_a)
+    print('Объем груза, который необходимо доставить каждому из производителей:')
+    print(self.import_b)
+    print('Весовая матрица:')
     print(table0)
+
     print('\n\n')
 
 
