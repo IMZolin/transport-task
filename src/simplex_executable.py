@@ -14,6 +14,8 @@ if __name__ == '__main__':
     tp1.export_a = a
     tp1.import_b = b
 
+    tp1.to_close()
+
     lpp = tp_to_lpp(tp1)
     """making canon form from input data"""
     A2, b2, Ind2 = Make_Canon_Form(lpp.coefficients_matrix.copy(),

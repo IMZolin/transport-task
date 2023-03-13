@@ -5,9 +5,13 @@ from preprocessing import Make_Canon_Form, Update_C
 from linear_programming import  LinearProgrammingProblem
 from simplex import Simplex_With_Init
 from tp_convert_to_lpp import tp_to_lpp
+import time
 
 
 def generate_problem(n, m):
+    """
+    Можно убрать эту функцию после merge.
+    """
     matrix = np.random.randint(50, size=(n, m))
     a = np.random.randint(50, size=n)
     b = np.random.randint(50, size=m)
@@ -53,30 +57,46 @@ def Potentials_Time_Recorder(self: TransportProblem):
     print(table)
 
 
+def graphics():
+    for iter_ in range(100):
+        M, a, b = generate_problem(5, 7)
+        tp1 = TransportProblem()
+        tp1.weight_matrix = M
+        tp1.export_a = a
+        tp1.import_b = b
+
+        Potentials_Time_Recorder(tp1)
+        lpp = tp_to_lpp(tp1)
+
+        Simplex_Time_Recorder(lpp)
+
 
 if __name__ == '__main__':
     print("\033[0;31;40m\033[0;32;40m\033[0;34;40m")  # COLOR SET
 
-    M, a, b = generate_problem(5, 7)
-    tp1 = TransportProblem()
+    # M, a, b = generate_problem(5, 7)
+    # tp1 = TransportProblem()
+    #
+    #
+    # # M = np.array([[8, 9, 11, 32, 24, 24, 0],
+    # #               [32, 23, 25, 7, 17, 20, 8],
+    # #               [16, 9, 26, 27, 35, 36, 45],
+    # #               [20, 48, 26, 6, 31, 30, 45],
+    # #               [0, 4, 13, 42, 10, 49, 21]])
+    # # a = np.array([43, 42, 30, 14, 24])
+    # # b = np.array([5, 2, 42, 17, 24, 26, 37])
+    #
+    # tp1.weight_matrix = M
+    # tp1.export_a = a
+    # tp1.import_b = b
+    #
+    # Potentials_Time_Recorder(tp1)
+    #
+    # lpp = tp_to_lpp(tp1)
+    #
+    # Simplex_Time_Recorder(lpp)
+    #
+    # print('cat')
 
+    graphics()
 
-    # M = np.array([[8, 9, 11, 32, 24, 24, 0],
-    #               [32, 23, 25, 7, 17, 20, 8],
-    #               [16, 9, 26, 27, 35, 36, 45],
-    #               [20, 48, 26, 6, 31, 30, 45],
-    #               [0, 4, 13, 42, 10, 49, 21]])
-    # a = np.array([43, 42, 30, 14, 24])
-    # b = np.array([5, 2, 42, 17, 24, 26, 37])
-
-    tp1.weight_matrix = M
-    tp1.export_a = a
-    tp1.import_b = b
-
-    Potentials_Time_Recorder(tp1)
-
-    lpp = tp_to_lpp(tp1)
-
-    Simplex_Time_Recorder(lpp)
-
-    print('cat')

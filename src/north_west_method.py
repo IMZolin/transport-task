@@ -18,7 +18,10 @@ def north_west_method(self):
             i += 1
         else:
             try:
-                self.basis_solution_matrix[i + 1, j] = 0
+                try:
+                    self.basis_solution_matrix[i + 1, j] = 0
+                except:
+                    self.basis_solution_matrix[i, j + 1] = 0
             except:
                 pass
             i += 1
