@@ -111,7 +111,7 @@ def Simplex(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chle
                 pivot(A_matrix, b_free_chlens, B_index_ones, C_deal_func, C_deal_free_chlen, leader_column, leader_line)
         except:
             return None
-        # step_print(A_matrix, b_free_chlens, C_deal_func, C_deal_free_chlen, B_index_ones)
+        step_print(A_matrix, b_free_chlens, C_deal_func, C_deal_free_chlen, B_index_ones)
 
     beautiful_print_solution(A_matrix, B_index_ones, b_free_chlens, C_deal_free_chlen, C_deal_func)
 
